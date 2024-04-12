@@ -38,6 +38,11 @@ public class Snake : MonoBehaviour
 
     void FixedUpdate()
     {
+        for (int i = _segments.Count - 1; i > 0; i--)
+        {
+            _segments[i].position = _segments[i - 1].position;
+        }
+
         transform.position = new UnityEngine.Vector3(Mathf.Round(transform.position.x) + _direction.x, Mathf.Round(transform.position.y) + _direction.y, 0.0f);
     }
 
