@@ -1,18 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private UnityEngine.Vector2 _direction = UnityEngine.Vector2.left;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            _direction = UnityEngine.Vector2.up;
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            _direction = UnityEngine.Vector2.left;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            _direction = UnityEngine.Vector2.down;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            _direction = UnityEngine.Vector2.right;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        transform.position = new UnityEngine.Vector3(Mathf.Round(transform.position.x) + _direction.x, Mathf.Round(transform.position.y) + _direction.y, 0.0f);
     }
 }
